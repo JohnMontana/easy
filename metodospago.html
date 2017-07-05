@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio | Easy</title>
+     <link rel="stylesheet" href="css/inicio.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+</head>
+<body>
+    <header class="cabecera">
+       <ul id="slide-out" class="side-nav amber white-text">
+            <li><div class="user-view">
+      <div class="background">
+        <img src="">
+      </div>
+      <a href="#!user"><img class="circle responsive-img" src="imagenes/pedrosola.jpg"></a>
+      <a href="#!name"><span id='nav_usuario' class="white-text name">pedrosola</span></a>
+      <a href="#!email"><span class="nav_tipo white-text">Pasajero</span></a>
+        </div></li>
+                <li><a href="inicio.html" class="white-text">Inicio</a></li>
+                <li><a href="#!" class="white-text"><i class="material-icons white-text">person_pin</i>Perfil</a></li>
+                <li><a href="metodospago.html" class="white-text"><i class="material-icons white-text">credit_card</i>Metodos de Pago</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="waves-effect white-text" href="viajes.html"><i class="material-icons white-text">description</i>Historial de Viajes</a></li>
+                <li><a class="waves-effect white-text" href="#!"><i class="material-icons white-text">settings_power</i>Cerrar Sesion</a></li>
+          </ul>
+          
+        <div class="col s12">
+            <div class="row">
+                <div class="col s2">
+                    <i class='material-icons small button-collapse' data-activates="slide-out">reorder</i>
+                </div>
+                <div class="float">
+                    <img src="imagenes/bell.png" alt="">
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col s6">
+                
+                <a href="#"><img src="imagenes/credit-card.png" alt=""></a>
+                <input type="button"  class="btn waves-effect waves-light   amber accent-4" name="boton" value="Agregar Tarjeta de Credito">
+            </div>
+            <div class="col s6">
+                
+                <a href="#"><img src="imagenes/credit-card2.png" alt=""></a>
+                 <input type="button"  class="btn waves-effect waves-light   amber accent-4" name="boton" value="Agregar Tarjeta de Debito">
+            </div>
+        </div>
+        <div class="row">
+           <h4>Tarjetas Asociadas</h4>
+            <div class="divider"></div>
+            <table class="highlight responsive-table">
+                <thead>
+                  <tr>
+                      <th>Num. Tarjeta</th>
+                      <th>Banco</th>
+                      <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>**** **** **** 4567</td>
+                    <td>MasterCard</td>
+                    <td><input type="button" class="btn waves-effect waves-ligth red" value="Eliminar"></td>
+                  </tr>
+                  <tr>
+                    <td>**** **** **** 6362</td>
+                    <td>Bancomer</td>
+                    <td><input type="button" class="btn waves-effect waves-ligth red" value="Eliminar"></td>
+                  </tr>
+                  <tr>
+                    <td>**** **** **** 4487</td>
+                    <td>MasterCard</td>
+                    <td><input type="button" class="btn waves-effect waves-ligth red" value="Eliminar"></td>
+                  </tr>
+                </tbody>
+      </table>
+        </div>
+    </div>
+ <script src='javascript/jquery-3.2.1.min.js'></script>
+<script src='javascript/materialize.min.js'></script> 
+<script src="javascript/sweetalert.min.js"></script>
+<script>
+    $(".button-collapse").sideNav();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Easy Taxi</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+</head>
+<body>
+    <header class="cabecera">
+        <img src='imagenes/logoeasy.png' alt="">
+    </header>
+    <div class="contenido container">
+        <div class="row">
+            <div class="col s6 registro z-depth-3">
+                <h3>Registrate</h3>
+                <p>Es Gratis y empieza a viajar desde hoy con las mejores tarifas y servicio.</p>
+                <form action="login.php" method="post">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="nombre" type="text" class="validate" name='nombre' >
+                            <label for="nombre">Nombre</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" id='apellido' class="validate" name='apellido'>
+                            <label for="apellido">Apellido</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="usuario" type="text" class="validate" name='usuario'>
+                            <label for="usuario">Usuario</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="correo" type="email" class="validate"  data-error="wrong" data-success="right" name='correo'>
+                            <label for="correo">Correo</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="contrasenia" type="password" class="validate" name='contrasenia'>
+                            <label for="contrasenia">Contraseña</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="contrasenia2" type="password" class="validate" name='contrasenia2'>
+                            <label for="contrasenia2">Repetir Contraseña</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="radio" name='tipo_usuario' value='pasajero' id='pasajero'>
+                        <label for="pasajero">Pasajero</label>
+                        <input type="radio" name='tipo_usuario' value='conductor' id='conductor'>
+                        <label for="conductor">Conductor</label>
+                        <input type="radio" name='tipo_usuario' value='afiliado' id='afiliado'>
+                        <label for="afiliado">Afiliado</label>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="button"  class="btn waves-effect waves-light   amber accent-4" name="boton" value="registrar" onclick="init()">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col s5 offset-s1 entrar z-depth-3">
+                <h4>Iniciar Sesion</h4>
+                <form action="login.php" method="post">
+                    <div class="row">
+                        <div class=" input-field col s12">
+                            <input id='usuario' type='text' class='validate' name='usuario'>
+                            <label for="usuario">Usuario</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id='contrasenia_ini' type='password' class='validate' name='contrasenia'>
+                            <label for="contrasenia">Contraseña</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="button" class="btn waves-effect waves-light  amber accent-4" name="boton" value="iniciarsesion" onclick="iniciar()">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer  amber accent-4 white-text"> | © 2017 Copyright</footer>
+   
+    <script src='javascript/jquery-3.2.1.min.js'></script>
+    <script src='javascript/materialize.min.js'></script>
+    <script src="javascript/sweetalert.min.js"></script>
+    <script src="javascript/login.js"></script>
+     <script>
+        function init(){
+        var nombre = $('#nombre').val();
+        var apellido = $('#apellido').val();
+        var usuario = $('#usuario').val();
+        var correo = $('#correo').val();
+        var contra = $('#contrasenia').val();
+        var contra2 = $('#contrasenia2').val();
+        var tipousuario = $('input:radio[name=tipo_usuario]:checked').val();
+    $.ajax({
+			type:'POST',
+			url: 'login.php',
+            dataType: 'json',
+            data:{nombre: nombre, apellido: apellido, usuario: usuario, correo: correo, contrasenia: contra, contrasenia2: contra2,tipo_usuario: tipousuario, tag: 'registrar'}
+            }).done(function(respuesta){
+                if(respuesta==1){
+                   swal('Registrado','Se ha registrado correctamente','success');
+                    $('#nombre').val('');
+                    $('#apellido').val('');
+                    $('#usuario').val('');
+                    $('#correo').val('');
+                    $('#contrasenia').val('');
+                    $('#contrasenia2').val('');
+                    $('input:radio[name=tipo_usuario]:checked').val('');
+                }else if(respuesta==2){
+                    swal('Error','La contrasenia no conciden','error');
+                }else{
+                    swal('Error','No se puede registrar','error');
+                }
+            });
+        }
+        function iniciar(){
+            var usuario = $('#usuario').val();
+            var contra = $('#contrasenia_ini').val();
+            $.ajax({
+                type: 'POST',
+                url: 'login.php',
+                dataType: 'json',
+                data:{usuario:usuario, contrasenia:contra, tag:'iniciarsesion'}
+            }).done(function(respuesta){
+               if(respuesta==1){
+                   swal('Bienvenido','Bienvenido a Easy Taxi', 'success');
+                   location.href="inicio.html";
+               }else{
+                   swal('Error', 'Usurio o contrasenia Incorrecto','error');
+                   $('#contrasenia').val('');
+               }
+            });
+        }
+            
+    </script>
+</body>
+</html>
